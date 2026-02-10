@@ -62,7 +62,7 @@ pipeline {
             }
             parallel {
                 stage('Build Product Service') {
-                    agent { label 'linux' }
+                    agent any
                     steps {
                         dir('backend/product-service') {
                             sh 'mvn clean compile -DskipTests'
@@ -70,7 +70,7 @@ pipeline {
                     }
                 }
                 stage('Build Order Service') {
-                    agent { label 'linux' }
+                    agent any
                     steps {
                         dir('backend/order-service') {
                             sh 'mvn clean compile -DskipTests'
@@ -78,7 +78,7 @@ pipeline {
                     }
                 }
                 stage('Build User Service') {
-                    agent { label 'linux' }
+                    agent any
                     steps {
                         dir('backend/user-service') {
                             sh 'mvn clean compile -DskipTests'
@@ -94,7 +94,7 @@ pipeline {
             }
             parallel {
                 stage('Test Product Service') {
-                    agent { label 'linux' }
+                    agent any
                     steps {
                         dir('backend/product-service') {
                             sh 'mvn test'
@@ -103,7 +103,7 @@ pipeline {
                     }
                 }
                 stage('Test Order Service') {
-                    agent { label 'linux' }
+                    agent any
                     steps {
                         dir('backend/order-service') {
                             sh 'mvn test'
@@ -112,7 +112,7 @@ pipeline {
                     }
                 }
                 stage('Test User Service') {
-                    agent { label 'linux' }
+                    agent any
                     steps {
                         dir('backend/user-service') {
                             sh 'mvn test'
@@ -313,7 +313,7 @@ pipeline {
         always {
             script {
                 echo "Cleaning up workspace..."
-                cleanWs()
+                deleteDir()
             }
         }
         success {
@@ -325,7 +325,7 @@ pipeline {
                     Commit: ${env.GIT_COMMIT_SHORT}
                     Duration: ${currentBuild.durationString}
                     
-                    View details: ${BUILD_URL}
+                    View details: ${env.BUILD_URL}
                 """
                 
                 // Email notification
@@ -353,7 +353,7 @@ pipeline {
                     Commit: ${env.GIT_COMMIT_SHORT}
                     Duration: ${currentBuild.durationString}
                     
-                    View details: ${BUILD_URL}console
+                    View details: ${env.BUILD_URL}console
                 """
                 
                 // Email notification
@@ -381,7 +381,7 @@ pipeline {
                     Commit: ${env.GIT_COMMIT_SHORT}
                     Duration: ${currentBuild.durationString}
                     
-                    View details: ${BUILD_URL}
+                    View details: ${env.BUILD_URL}
                 """
                 
                 emailext(
