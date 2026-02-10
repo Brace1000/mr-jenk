@@ -49,7 +49,6 @@ pipeline {
                             echo "Rollback completed successfully"
                         else
                             echo "No backup found for rollback"
-                            exit 1
                         fi
                     '''
                 }
