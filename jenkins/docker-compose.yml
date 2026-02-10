@@ -15,7 +15,6 @@ services:
       - ./jenkins_backup:/var/jenkins_backup
     environment:
       - JAVA_OPTS=-Djenkins.install.runSetupWizard=false
-      - JENKINS_OPTS=--prefix=/jenkins
     networks:
       - jenkins-network
     restart: unless-stopped
