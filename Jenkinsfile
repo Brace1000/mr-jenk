@@ -331,7 +331,7 @@ pipeline {
                 emailext(
                     subject: "✅ Jenkins Build Success - ${JOB_NAME} #${BUILD_NUMBER}",
                     body: message,
-                    to: '${DEFAULT_RECIPIENTS}',
+                    to: 'your-email@gmail.com',
                     mimeType: 'text/plain'
                 )
                 
@@ -359,7 +359,7 @@ pipeline {
                 emailext(
                     subject: "❌ Jenkins Build Failed - ${JOB_NAME} #${BUILD_NUMBER}",
                     body: message,
-                    to: '${DEFAULT_RECIPIENTS}',
+                    to: 'your-email@gmail.com',
                     mimeType: 'text/plain'
                 )
                 
